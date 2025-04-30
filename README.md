@@ -10,6 +10,7 @@ An Uber model written in C++ and implementing a LInkedList data structure.
 
 ## Changes
 
+- Linked List created
 - Added Person files
 - Added Driver files
 - Added Rider files
