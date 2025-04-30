@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 using namespace std;
 
 template<typename T>
@@ -87,6 +88,42 @@ public:
 			previous->next = newGuy;
 			list_size++;
 		}
+	}
+
+	//! @note Remove operation at specific index position
+	void remove_at(int index) {
+		Node* current = head;
+
+		for(int i = 1; i < index; i++) {
+			if(current != nullptr) {
+				current = current->next;
+			}
+		}
+
+		// If the position is out of range
+		if (current == nullptr) {
+			return;
+		}
+	
+		// Update the previous node's next pointer
+		if (current->prev != nullptr) {
+			current->prev->next = current->next;
+		}
+	
+		// Update the next node's prev pointer
+		if (current->next != nullptr) {
+			current->next->prev = current->prev;
+		}
+	
+		// If the node to be deleted is the head node
+		if (head == current) {
+			head = current->next;
+		}
+	
+		// Deallocate memory for the deleted node
+		delete current;
+
+		list_size--;
 	}
 
 	void pop_back() {
