@@ -11,6 +11,14 @@
 #include "rider.h"
 #include "request.h"
 
+/*
+* Main Program Loop
+* If (Request queue has any Requests && any Drivers are available)
+*   pop the next request in queue and create Assignment for closest Driver
+*
+* progress each Driver through its Assignement (LinkedList?)
+*/
+
 class System
 {
 private:
@@ -18,8 +26,9 @@ private:
     queue<Request> *requests;
 
 public:
-    void start();                      // starts system's main loop
-    int assignDriver(Request request); // returns 1 if no available driver, 0 if otherwise successful
+    void start();                       // starts system's main loop
+    int assignDriver(Request &request); // returns 1 if no available driver, 0 if otherwise successful
+    void addRequest(Request &request);  // API that adds new request to queue
 }
 
 #endif
