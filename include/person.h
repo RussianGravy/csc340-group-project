@@ -3,14 +3,15 @@
 
 #include <string>
 
-class Person {
+class Person
+{
 protected:
     std::string id;
     std::string name;
     std::string phone;
     double rating;
     int totalRatings;
-    Location currentLocation;
+    Location &currentLocation;
 
 public:
 };
