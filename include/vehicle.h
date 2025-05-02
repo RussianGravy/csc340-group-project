@@ -1,7 +1,14 @@
 #pragma once
 #include <string>
 
-class Vehicle {
+class Vehicle
+{
+private:
+    int license_plate;
+    int year;
+    std::string manufacturer;
+    std::string model;
+    std::string color_name;
+
 public:
-    Vehicle(int p_license_plate, const std::string& p_manufacturer, const std::string& p_model, const std::string& p_color_name, int p_year) {}
 };

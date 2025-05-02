@@ -12,7 +12,6 @@ protected:
     int totalRatings;
     Location currentLocation;
 
-
 public:
 };
 
