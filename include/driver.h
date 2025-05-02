@@ -9,7 +9,7 @@
 class Driver : public Person {
 private:
     std::string licenseNumber;
-    Vehicle vehicle;
+    Vehicle *vehicle;
     bool available;
     
 public:

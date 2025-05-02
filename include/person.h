@@ -11,7 +11,7 @@ protected:
     std::string phone;
     double rating;
     int totalRatings;
-    Location &currentLocation;
+    Location *currentLocation;
 
 public:
 };
