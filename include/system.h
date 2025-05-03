@@ -22,13 +22,17 @@
 class System
 {
 private:
-    vector<Driver> *drivers;
-    queue<Request> *requests;
+std::vector<Driver> *drivers;
+std::queue<Request> *requests;
 
 public:
+
+    System() = default;
+    ~System() = default;
+    
     void start();                       // starts system's main loop
     int assignDriver(Request &request); // returns 1 if no available driver, 0 if otherwise successful
     void addRequest(Request &request);  // API that adds new request to queue
-}
+};
 
 #endif

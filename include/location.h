@@ -11,6 +11,9 @@ private:
     std::string address;
 
 public:
+
+    double distanceTo(const Location& other) const;
+    std::string getAddress() const;
 };
 
 #endif // LOCATION_H
