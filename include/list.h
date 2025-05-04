@@ -17,11 +17,7 @@ class list {
 		}
 	};
 public: 
-//updated constuctor
 	list() {
-		head = nullptr;
-		tail = nullptr;
-		list_size = 0;
 	}
 
 	~list() {

@@ -19,10 +19,10 @@ int main() {
     cout << "Size = " << ll.size() << '\n';
      ll.print();
 
-    ll.pop_back();
-    ll.pop_front();
+    // ll.pop_back();
+    // ll.pop_front();
 
-    ll.remove_at(0);
+    // ll.remove_at(0);
 
     cout << "Size = " << ll.size() << '\n';
 
