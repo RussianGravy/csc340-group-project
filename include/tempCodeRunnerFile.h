@@ -10,15 +10,10 @@ class list {
 		Node* prev = nullptr;
 
 		//added a cpstuctro 
-		Node(const T& val) {
-			data = val;
-			next = nullptr;
-			prev = nullptr;
-		}
+		Node(const T& val) : data(val), next(nullptr), prev(nullptr) {}
 	};
 public: 
-	list() {
-	}
+	list() {}
 
 	~list() {
 		for (Node *ptr = head; ptr; ) {

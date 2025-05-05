@@ -13,6 +13,12 @@ private:
     bool available;
     
 public:
+    Driver(std::string name, Location* loc, std::string license);
+    
+    bool isAvailable() const;
+    void setAvailable(bool);
+    Location* getLocation() const;
+    string getName() const;
 };
 
 #endif // DRIVER_H

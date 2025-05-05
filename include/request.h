@@ -12,6 +12,8 @@ private:
     Location *dropOff;
 
 public:
+    Location* getPickUp() const;
+    Location* getDropOff() const;
 };
 
 #endif
