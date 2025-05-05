@@ -16,7 +16,7 @@ protected:
 public:
     // getters
     std::string getID();
-    std::string getName();
+    virtual std::string getName();
     std::string getPhone();
     double getRating();
     int getTotalRatings();

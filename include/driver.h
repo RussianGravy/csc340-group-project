@@ -16,6 +16,7 @@ private:
 
 public:
     Driver(std::string name, Location *loc, std::string license);
+    std::string getName();
     void setLicenseNumber(std::string license);
     std::string getLicenseNumber();
     bool isAvailable() const;

@@ -9,7 +9,10 @@ Driver::Driver(std::string name, Location *loc, std::string license)
     this->name = name;
     this->currentLocation = loc;
 }
-
+std::string Driver::getName()
+{
+    return this->name;
+}
 // settler and getters
 void Driver::setLicenseNumber(std::string license)
 {
@@ -30,8 +33,8 @@ bool Driver::isAvailable() const
 }
 
 std::ostream &operator<<(std::ostream &os, Driver &d)
-{ 
+{
     /* "Name: " << d.getName() << */
-    os << ", License: " << d.getLicenseNumber() << ", isAvailable(1 for True, 0 for False): " << d.isAvailable();
+    os << "Name: " << d.getName() << ", License: " << d.getLicenseNumber() << ", isAvailable(1 for True, 0 for False): " << d.isAvailable();
     return os;
 }
