@@ -1,5 +1,5 @@
-#include "person.h"
-#include "location.h"
+#include "../include/person.h"
+#include "../include/location.h"
 
 // getters
 std::string Person::getID()
@@ -28,7 +28,7 @@ int Person::getTotalRatings()
 
 Location *Person::getCurrentLocation()
 {
-    this->currentLocation;
+    return this->currentLocation;
 }
 
 // setters

@@ -1,23 +1,23 @@
-#include "include/list.h"
-#include "include/system.h"
-#include "include/driver.h"
-#include "include/location.h"
-#include "include/request.h"
-#include "include/rider.h"
-#include "include/vehicle.h"
-#include "include/person.h"
-#include "include/assignment.h"
-#include "include/controller.h"
+#include "list.h"
+#include "system.h"
+#include "driver.h"
+#include "location.h"
+#include "request.h"
+#include "rider.h"
+#include "vehicle.h"
+#include "person.h"
+#include "assignment.h"
+#include "controller.h"
 
+int main()
+{
+    list<Driver*> ll;
+    ll.push_front(new Driver("Bob", nullptr, "8YHH264"));
+    ll.push_front(new Driver("Alex", nullptr, "8YHH264"));
+    ll.push_back(new Driver("Alice", nullptr, "8YHH264"));
 
-int main() {
-    list<std::string> ll;
-    ll.push_front("Bob");
-    ll.push_front("Alex");
-    ll.push_back("Alice");
-    
     cout << "Size = " << ll.size() << '\n';
-     ll.print();
+    ll.print();
 
     // ll.pop_back();
     // ll.pop_front();
@@ -27,7 +27,6 @@ int main() {
     cout << "Size = " << ll.size() << '\n';
 
     ll.print();
-
 
     return 0;
 }

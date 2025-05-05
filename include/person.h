@@ -1,8 +1,6 @@
 #ifndef PERSON_H
 #define PERSON_H
-#include "include/location.h"
-
-
+#include "location.h"
 #include <string>
 
 class Person
@@ -28,7 +26,7 @@ public:
     void setName(std::string name);
     void setPhone(std::string phone);
     void addRating(double rating); // calculates an average using old rating and the rating argument
-    void setCurrentLocation(Location* location);
+    void setCurrentLocation(Location *location);
 };
 
 #endif // PERSON_H
