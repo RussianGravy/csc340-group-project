@@ -12,27 +12,27 @@
 #include "request.h"
 
 /*
-* Main Program Loop
-* If (Request queue has any Requests && any Drivers are available)
-*   pop the next request in queue and create Assignment for closest Driver
-*
-* progress each Driver through its Assignement (LinkedList?)
-*/
+ * Main Program Loop
+ * If (Request queue has any Requests && any Drivers are available)
+ *   pop the next request in queue and create Assignment for closest Driver
+ *
+ * progress each Driver through its Assignement (LinkedList?)
+ */
 
 class System
 {
 private:
-std::vector<Driver> *drivers;
-std::queue<Request> *requests;
+    list<Driver *> drivers;
+    std::queue<Request *> requests;
 
 public:
-
     System() = default;
     ~System() = default;
-    
-    void start();                       // starts system's main loop
-    int assignDriver(Request &request); // returns 1 if no available driver, 0 if otherwise successful
-    void addRequest(Request &request);  // API that adds new request to queue
+    void start();                                                       // starts system's main loop
+    int assignDriver(list<Driver *> drivers, Request &request);         // returns 1 if no available driver, 0 if otherwise successful
+    void addRequest(std::queue<Request *> &requests, Request &request); // API that adds new request to queue
+    void addDriver(Driver *driver);
+    double getDistance(Location &loc1, Location &loc2); // gives the distance between two locations using pythagorean theorem
 };
 
 #endif

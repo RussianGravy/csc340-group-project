@@ -11,22 +11,10 @@
 
 int main()
 {
-    list<Driver*> ll;
-    ll.push_front(new Driver("Bob", nullptr, "8YHH264"));
-    ll.push_front(new Driver("Alex", nullptr, "8YHH264"));
-    ll.push_back(new Driver("Alice", nullptr, "8YHH264"));
-
-    cout << "Size = " << ll.size() << '\n';
-    ll.print();
-
-    // ll.pop_back();
-    // ll.pop_front();
-
-    // ll.remove_at(0);
-
-    cout << "Size = " << ll.size() << '\n';
-
-    ll.print();
-
+    System *system = new System();
+    system->addDriver(new Driver("Bob", nullptr, "8YHH264"));
+    system->addDriver(new Driver("Alex", nullptr, "123ABC!"));
+    system->addDriver(new Driver("Alice", nullptr, "155HJ66"));
+    system->start();
     return 0;
 }
