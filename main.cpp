@@ -16,5 +16,6 @@ int main()
     system->addDriver(new Driver("Alex", nullptr, "123ABC!"));
     system->addDriver(new Driver("Alice", nullptr, "155HJ66"));
     system->start();
+    delete system;
     return 0;
 }
