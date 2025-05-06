@@ -27,7 +27,7 @@ private:
 
 public:
     System() = default;
-    ~System() = default;
+    ~System();
     void start();                                                       // starts system's main loop
     int assignDriver(list<Driver *> drivers, Request &request);         // returns 1 if no available driver, 0 if otherwise successful
     void addRequest(std::queue<Request *> &requests, Request &request); // API that adds new request to queue

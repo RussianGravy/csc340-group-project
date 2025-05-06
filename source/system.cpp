@@ -13,11 +13,13 @@ void System::start()
     // implement main loop from above
     drivers.print();
 }
-// System::System()
-// {
-//     drivers = new list();
-//     requests = new queue();
-// }
+System::~System()
+{
+    for (list<Driver *>::Node *current = drivers.get_head(); current; current = current->next)
+    {
+        delete current->data;
+    }
+}
 // returns 1 if no available driver, 0 if otherwise successful
 int System::assignDriver(list<Driver *> drivers, Request &request)
 {
