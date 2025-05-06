@@ -8,6 +8,7 @@ using namespace std;
 template <typename T>
 class list
 {
+public:
 	struct Node
 	{
 		T data{};
@@ -215,6 +216,14 @@ public:
 			cout << curNode->data << '\n';
 		}
 	}
+
+    Node* get_head() const {
+        return head;
+    }
+
+    Node* get_tail() const {
+        return tail;
+    }
 
 private:
 	int list_size = 0;
