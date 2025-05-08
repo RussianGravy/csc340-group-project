@@ -4,15 +4,16 @@
 #include <string>
 #include <cmath>
 
-class Location {
+class Location
+{
 private:
     double latitude;
     double longitude;
     std::string address;
 
 public:
-
-    double distanceTo(const Location& other) const;
+    Location(double lat, double longg, std::string addy);
+    double distanceTo(const Location &other) const;
     std::string getAddress() const;
 };
 

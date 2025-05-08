@@ -3,6 +3,12 @@
 #include <iostream>
 using namespace std;
 
+Location::Location(double lat, double longg, std::string addy)
+{
+    this->latitude = lat;
+    this->longitude = longg;
+    this->address = addy;
+}
 // calcualting the dstance and should return the pytha theorem
 // could do it with one line of code but will look hella weird
 //(x2 - x1) squared + (y2 -y1)squared, then you square root everything to get distance

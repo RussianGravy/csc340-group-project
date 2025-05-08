@@ -7,7 +7,11 @@ Driver::Driver(std::string name, Location *loc, std::string license)
     this->licenseNumber = license;
     this->available = true;
     this->name = name;
-    this->currentLocation = loc;
+    this->currentLocation = loc; // why can't I copy over the values (no default copy operator??)
+}
+Driver::~Driver()
+{
+    delete currentLocation;
 }
 std::string Driver::getName()
 {
@@ -35,6 +39,6 @@ bool Driver::isAvailable() const
 std::ostream &operator<<(std::ostream &os, Driver &d)
 {
     /* "Name: " << d.getName() << */
-    os << "Name: " << d.getName() << ", License: " << d.getLicenseNumber() << ", isAvailable(1 for True, 0 for False): " << d.isAvailable();
+    os << d.getName() << ", " << d.getLicenseNumber() << ", " << d.isAvailable();
     return os;
 }

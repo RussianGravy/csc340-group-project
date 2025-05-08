@@ -12,6 +12,8 @@ private:
     Location *dropOff;
 
 public:
+    Request(Rider *rider, Location *pickUp, Location *dropOff);
+    ~Request();
     Rider *getRider();
     Location *getPickUp() const;
     Location *getDropOff() const;

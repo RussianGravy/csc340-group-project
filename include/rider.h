@@ -11,6 +11,8 @@ private:
     std::string paymentMethod;
 
 public:
+    Rider(std::string id, std::string name, Location *loc);
+    ~Rider();
 };
 
 #endif // RIDER_H
