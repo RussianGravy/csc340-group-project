@@ -29,9 +29,14 @@ int main()
     system->addDriver(new Driver("Driver_Alex", embarcadaero, "123ABC!"));
     system->addDriver(new Driver("Driver_Alice", baybridge, "155HJ66"));
     // adding a request
-    Rider *testRider = new Rider("C1238895", "Rider_James", mcdonalds);
-    system->addRequest(new Request(testRider, mcdonalds, home));
-    // starting the program
+    
+	// Aaron Note -- When you allocate it memory leaks here because your allocating your rider to the heap
+	// Aaron Note -- You might want to do this a bit differently because this also causes a memory leak.
+	//Rider *testRider = new Rider("C1238895", "Rider_James", mcdonalds);
+    //system->addRequest(new Request(testRider, mcdonalds, home));
+    
+
+	// starting the program
     system->start();
     // end the program and clean up memory
     delete system;

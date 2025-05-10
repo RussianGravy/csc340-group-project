@@ -4,10 +4,12 @@ using namespace std;
 Request::Request(Rider *rider, Location *pickUp, Location *dropOff)
 {
     this->rider = rider;
-    this->pickUp = new Location();
-    this->dropOff = new Location();
-    *this->pickUp = *pickUp;
-    *this->dropOff = *dropOff;
+	// Aaron Note -- Memory leak also from here because you are essentially allocating to the heap
+	// Aaron Note -- Did not need to allocate and simpler to just assign the variables directly to the member variables
+    this->pickUp = pickUp;
+    this->dropOff =dropOff;
+    //*this->pickUp = *pickUp;
+    //*this->dropOff = *dropOff;
 }
 Request::~Request()
 {
