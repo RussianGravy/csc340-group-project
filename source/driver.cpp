@@ -9,7 +9,7 @@ Driver::Driver(std::string name, Location *loc, std::string license)
     this->available = true;
     this->name = name;
     this->currentLocation = new Location();
-    *this->currentLocation = *loc; // why can't I copy over the values (no default copy operator??)
+    *this->currentLocation = *loc;
 }
 Driver::~Driver()
 {

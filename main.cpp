@@ -21,16 +21,16 @@ int main()
     Location *sfstate = new Location(2, 4, "SF State");
     Location *embarcadaero = new Location(1, 1, "Embarcadero");
     Location *baybridge = new Location(1, 2, "Bay Bridge");
-    Location *locations[] = {sfstate, embarcadaero, baybridge};
+    Location *mcdonalds = new Location(1, 1, "McDonalds");
+    Location *home = new Location(2, 2, "Home");
+    Location *locations[] = {sfstate, embarcadaero, baybridge, mcdonalds, home};
     // adding drivers
     system->addDriver(new Driver("Driver_Bob", sfstate, "8YHH264"));
     system->addDriver(new Driver("Driver_Alex", embarcadaero, "123ABC!"));
     system->addDriver(new Driver("Driver_Alice", baybridge, "155HJ66"));
     // adding a request
-    Location *pickUp = new Location(1, 1, "McDonalds");
-    Location *dropOff = new Location(2, 2, "Home");
-    Rider *testRider = new Rider("C1238895", "Rider_James", pickUp);
-    system->addRequest(new Request(testRider, pickUp, dropOff));
+    Rider *testRider = new Rider("C1238895", "Rider_James", mcdonalds);
+    system->addRequest(new Request(testRider, mcdonalds, home));
     // starting the program
     system->start();
     // end the program and clean up memory

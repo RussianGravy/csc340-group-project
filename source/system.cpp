@@ -15,7 +15,6 @@ void System::start()
     drivers.print();
     if (!requests.empty())
     {
-        std::cout << "we should be assiging a driver y'all..." << endl;
         Request *nextReq = requests.front();
         assignDriver(*nextReq);
     }
@@ -39,7 +38,6 @@ int System::assignDriver(Request &request)
 {
     Driver *closestDriver = nullptr;
     double distanceToClosestDriver;
-    std::cout << "closest driver: " << closestDriver << endl;
     for (list<Driver *>::Node *current = drivers.get_head(); current; current = current->next)
     {
         if (current->data->isAvailable())
@@ -51,18 +49,15 @@ int System::assignDriver(Request &request)
                 {
                     closestDriver = current->data;
                     distanceToClosestDriver = distanceToCurrent;
-                    std::cout << *closestDriver << endl;
                 }
             }
             else
             {
                 closestDriver = current->data;
                 distanceToClosestDriver = current->data->getCurrentLocation()->distanceTo(*request.getPickUp());
-                std::cout << *closestDriver << endl;
             }
         }
     }
-    std::cout << "closest driver: " << closestDriver << endl;
     if (closestDriver)
     {
         closestDriver->setAvailable(false);

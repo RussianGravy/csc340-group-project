@@ -4,8 +4,10 @@ using namespace std;
 Request::Request(Rider *rider, Location *pickUp, Location *dropOff)
 {
     this->rider = rider;
-    this->pickUp = pickUp;
-    this->dropOff = dropOff;
+    this->pickUp = new Location();
+    this->dropOff = new Location();
+    *this->pickUp = *pickUp;
+    *this->dropOff = *dropOff;
 }
 Request::~Request()
 {
