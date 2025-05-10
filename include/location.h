@@ -12,6 +12,7 @@ private:
     std::string address;
 
 public:
+    Location();
     Location(double lat, double longg, std::string addy);
     double distanceTo(const Location &other) const;
     std::string getAddress() const;

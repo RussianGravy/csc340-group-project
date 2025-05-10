@@ -17,10 +17,15 @@ int main()
 {
     // T_E_S_T_I_N_G
     System *system = new System();
+    // making locations
+    Location *sfstate = new Location(2, 4, "SF State");
+    Location *embarcadaero = new Location(1, 1, "Embarcadero");
+    Location *baybridge = new Location(1, 2, "Bay Bridge");
+    Location *locations[] = {sfstate, embarcadaero, baybridge};
     // adding drivers
-    system->addDriver(new Driver("Driver_Bob", new Location(1, 2, "SF State"), "8YHH264"));
-    system->addDriver(new Driver("Driver_Alex", new Location(3, 3, "Embarcadero"), "123ABC!"));
-    system->addDriver(new Driver("Driver_Alice", new Location(1, 1, "Bay Bridge"), "155HJ66"));
+    system->addDriver(new Driver("Driver_Bob", sfstate, "8YHH264"));
+    system->addDriver(new Driver("Driver_Alex", embarcadaero, "123ABC!"));
+    system->addDriver(new Driver("Driver_Alice", baybridge, "155HJ66"));
     // adding a request
     Location *pickUp = new Location(1, 1, "McDonalds");
     Location *dropOff = new Location(2, 2, "Home");
@@ -28,6 +33,11 @@ int main()
     system->addRequest(new Request(testRider, pickUp, dropOff));
     // starting the program
     system->start();
+    // end the program and clean up memory
     delete system;
+    for (Location *loc : locations)
+    {
+        delete loc;
+    }
     return 0;
 }

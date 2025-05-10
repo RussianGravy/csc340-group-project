@@ -1,5 +1,6 @@
 #include "../include/driver.h"
 #include "../include/person.h"
+#include <iostream>
 using namespace std;
 
 Driver::Driver(std::string name, Location *loc, std::string license)
@@ -7,7 +8,8 @@ Driver::Driver(std::string name, Location *loc, std::string license)
     this->licenseNumber = license;
     this->available = true;
     this->name = name;
-    this->currentLocation = loc; // why can't I copy over the values (no default copy operator??)
+    this->currentLocation = new Location();
+    *this->currentLocation = *loc; // why can't I copy over the values (no default copy operator??)
 }
 Driver::~Driver()
 {

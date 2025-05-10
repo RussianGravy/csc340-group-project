@@ -3,6 +3,7 @@
 #include <iostream>
 using namespace std;
 
+Location::Location() {}
 Location::Location(double lat, double longg, std::string addy)
 {
     this->latitude = lat;
