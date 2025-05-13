@@ -1,8 +1,8 @@
-#ifndef LIST_H
-#define LIST_H
+#pragma once
 
 #include <iostream>
 #include <stdexcept>
+#include <type_traits>
 using namespace std;
 
 template <typename T>
@@ -205,7 +205,7 @@ public:
 	{
 		for (Node *curNode = head; curNode; curNode = curNode->next)
 		{
-			cout << *curNode->data << '\n';
+			cout << curNode->data << '\n';
 		}
 	}
 
@@ -213,7 +213,13 @@ public:
 	{
 		for (Node *curNode = tail; curNode; curNode = curNode->prev)
 		{
-			cout << curNode->data << '\n';
+            // At compile-time checks if the type being passed is a pointer of some type if it is then we dereference that object
+            if(std::is_pointer_v<T>) {
+                cout << *curNode->data << '\n';
+            }
+            else {
+                cout << curNode->data << '\n';
+            }
 		}
 	}
 
@@ -231,4 +237,3 @@ private:
 	Node *tail = nullptr;
 };
 
-#endif

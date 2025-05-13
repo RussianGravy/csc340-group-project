@@ -1,21 +1,17 @@
-#ifndef LOCATION_H
-#define LOCATION_H
-
+#pragma once
 #include <string>
-#include <cmath>
 
 class Location
 {
-private:
-    double latitude;
-    double longitude;
-    std::string address;
-
 public:
     Location();
     Location(double lat, double longg, std::string addy);
+    ~Location() {}
     double distanceTo(const Location &other) const;
-    std::string getAddress() const;
+   std::string getAddress() const;
+ private:
+    double latitude;
+    double longitude;
+    std::string address;
 };
 
-#endif // LOCATION_H

@@ -1,14 +1,10 @@
 /*
     Implement binary search tree to sort requests by closest distance to available driver.
 */
-#ifndef SYSTEM_H
-#define SYSTEM_H
-
-#include <vector>
+#pragma once
 #include <queue>
 #include "list.h"
 #include "driver.h"
-#include "rider.h"
 #include "request.h"
 
 /*
@@ -21,17 +17,15 @@
 
 class System
 {
-private:
-    list<Driver *> drivers;
-    std::queue<Request *> requests;
-
 public:
     System() = default;
     ~System();
     void start();                                               // starts system's main loop
-    int assignDriver(Request &request); // returns 1 if no available driver, 0 if otherwise successful
-    void addRequest(Request *request);                          // API that adds new request to queue
-    void addDriver(Driver *driver);
+    int assignDriver(const Request &request); // returns 1 if no available driver, 0 if otherwise successful
+    void addRequest(const Request& request);                          // API that adds new request to queue
+    void addDriver(const Driver& driver);
+ private:
+    list<Driver> drivers;
+    std::queue<Request> requests;
 };
 
-#endif

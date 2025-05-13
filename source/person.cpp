@@ -26,7 +26,7 @@ int Person::getTotalRatings()
     return this->totalRatings;
 }
 
-Location *Person::getCurrentLocation()
+Location Person::getCurrentLocation() const
 {
     return this->currentLocation;
 }
@@ -54,8 +54,8 @@ void Person::addRating(double rating)
     this->totalRatings += 1;
 }
 
-void Person::setCurrentLocation(Location *location)
+void Person::setCurrentLocation(const Location& location)
 {
     // copies members without copying pointer.
-    *this->currentLocation = *location;
+    this->currentLocation = location;
 }

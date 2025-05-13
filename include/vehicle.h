@@ -1,14 +1,11 @@
 #pragma once
 #include <string>
 
-class Vehicle
+struct Vehicle
 {
-private:
-    int license_plate;
-    int year;
-    std::string manufacturer;
-    std::string model;
-    std::string color_name;
-
-public:
+    int license_plate=0;
+    int year=0;
+    std::string manufacturer="Undefined";
+    std::string model="Undefined";
+    std::string color_name="Undefined";
 };

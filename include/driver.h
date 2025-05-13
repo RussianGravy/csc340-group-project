@@ -1,5 +1,4 @@
-#ifndef DRIVER_H
-#define DRIVER_H
+#pragma once
 
 #include "person.h"
 #include "vehicle.h"
@@ -9,21 +8,29 @@
 
 class Driver : public Person
 {
-private:
-    std::string licenseNumber;
-    Vehicle *vehicle;
-    bool available;
-
 public:
-    Driver(std::string name, Location *loc, std::string license);
+    Driver() = default;
+    Driver(std::string name, std::string license);
     ~Driver();
-    std::string getName();
+    std::string getName() const;
     void setLicenseNumber(std::string license);
-    std::string getLicenseNumber();
+    std::string getLicenseNumber() const;
     bool isAvailable() const;
     void setAvailable(bool);
-    std::string getName() const;
-    friend std::ostream &operator<<(std::ostream &os, Driver &driver);
+    
+    // set vehicle information assigned to the driver
+    void set_vehicle(const Vehicle& p_vehicle);
+
+    // adds new location queue'd up to the driver
+    void add_location(const Location& p_location);
+
+   friend std::ostream &operator<<(std::ostream &os, const Driver &driver);
+   friend std::istream& operator>>(std::istream& ins, Driver& p_driver);
+ private:
+    std::string licenseNumber;
+    Vehicle vehicle;
+    bool available;
+    std::vector<Location> locations;
+
 };
 
-#endif // DRIVER_H

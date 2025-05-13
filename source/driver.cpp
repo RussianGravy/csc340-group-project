@@ -1,21 +1,17 @@
 #include "../include/driver.h"
-#include "../include/person.h"
 #include <iostream>
 using namespace std;
 
-Driver::Driver(std::string name, Location *loc, std::string license)
+Driver::Driver(std::string name, std::string license)
 {
     this->licenseNumber = license;
     this->available = true;
     this->name = name;
-    this->currentLocation = new Location();
-    *this->currentLocation = *loc;
 }
 Driver::~Driver()
 {
-    delete currentLocation;
 }
-std::string Driver::getName()
+std::string Driver::getName() const
 {
     return this->name;
 }
@@ -24,7 +20,7 @@ void Driver::setLicenseNumber(std::string license)
 {
     this->licenseNumber = license;
 }
-std::string Driver::getLicenseNumber()
+std::string Driver::getLicenseNumber() const
 {
     return this->licenseNumber;
 }
@@ -32,15 +28,43 @@ void Driver::setAvailable(bool status)
 {
     available = status;
 }
+
+void Driver::add_location(const Location& p_location) {
+    locations.push_back(p_location);
+}
+
+void Driver::set_vehicle(const Vehicle& p_vehicle) {
+    vehicle = p_vehicle;
+}
+
 //
 bool Driver::isAvailable() const
 {
     return available;
 }
 
-std::ostream &operator<<(std::ostream &os, Driver &d)
+std::ostream &operator<<(std::ostream &os, const Driver &d)
 {
-    /* "Name: " << d.getName() << */
     os << d.getName() << ", " << d.getLicenseNumber() << ", " << d.isAvailable();
     return os;
+}
+/* struct Vehicle */
+/* { */
+/*     int license_plate; */
+/*     int year; */
+/*     std::string manufacturer; */
+/*     std::string model; */
+/*     std::string color_name; */
+/* } */
+std::istream& operator>>(std::istream& ins, Driver& p_driver) {
+    std::string name="";
+    std::string license="";
+    cout << "Enter Name: ";
+    ins >> name;
+    cout << "Enter License: ";
+    ins >> license;
+
+    p_driver.setName(name);
+    p_driver.setLicenseNumber(license);
+    return ins;
 }
