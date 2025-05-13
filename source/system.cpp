@@ -7,14 +7,19 @@
  *   pop the next request in queue and create Assignment for closest Driver
  *
  * progress each Driver through its Assignement (LinkedList?)
-*/
+ */
 
-void print_menu() {
+void print_menu()
+{
     cout << "------------------------------\n";
     cout << "1. Add Driver\n"
          << "2. Add Rider\n"
          << "3. Load Drivers From File\n"
          << "4. Load Riders From File\n"
+         << "~ App Controls ~\n"
+         << "5. Check available drivers // gives number of available drivers\n"
+         << "6. New Request // submit new request with pick-up and drop-off location\n"
+         << "7. Check Status of Request // gives your place in queue\n"
          << "Press 0 to quit\n";
     cout << "------------------------------\n";
 }
@@ -22,41 +27,46 @@ void print_menu() {
 // starts system's main loop
 void System::start()
 {
-    // just testing
-    std::cout << "~ Before request: ~" << endl;
-    /* drivers.print(); */
-    if (!requests.empty())
+    while (true)
     {
-        Request nextReq = requests.front();
-        assignDriver(nextReq);
-    }
-
-    
-    while(true){
         print_menu();
 
         int x = read("");
-        if(x == 0){
+        if (x == 0)
+        {
             break;
         }
 
-        if(x == 1) {
+        if (x == 1)
+        {
             cout << "Adding a driver!\n";
         }
-        else if(x == 2) {
+        else if (x == 2)
+        {
             cout << "Adding a Rider\n";
         }
-        else if(x == 3) {
+        else if (x == 3)
+        {
             cout << "Loading Driver from File\n";
         }
-        else if(x == 4) {
+        else if (x == 4)
+        {
             cout << "Loading Rider from File\n";
         }
-
+        // App User Controls
+        else if (x == 5)
+        {
+            cout << "Giving number of available drivers.\n";
+        }
+        else if (x == 6)
+        {
+            cout << "Making a new request for pick up and drop off.\n";
+        }
+        else if (x == 7)
+        {
+            cout << "Giving your place in the request queue\n";
+        }
     }
-    
-
-    std::cout << " ~ After assigning request to driver: ~" << endl;
     drivers.print();
 }
 System::~System()
@@ -107,11 +117,11 @@ int System::assignDriver(const Request &request)
         return 1;
     }
 }
-void System::addRequest(const Request& request)
+void System::addRequest(const Request &request)
 {
     requests.push(request);
 }
-void System::addDriver(const Driver& driver)
+void System::addDriver(const Driver &driver)
 {
     drivers.push_back(driver);
 }
