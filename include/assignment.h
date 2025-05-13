@@ -14,6 +14,7 @@ private:
     Location *dropOff;
 
 public:
+    
 };
 
 #endif
