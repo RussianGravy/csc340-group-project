@@ -53,14 +53,7 @@ std::ostream &operator<<(std::ostream &os, const Driver &d)
     }
     return os;
 }
-/* struct Vehicle */
-/* { */
-/*     int license_plate; */
-/*     int year; */
-/*     std::string manufacturer; */
-/*     std::string model; */
-/*     std::string color_name; */
-/* } */
+
 std::istream& operator>>(std::istream& ins, Driver& p_driver) {
     std::string name="";
     std::string license="";
