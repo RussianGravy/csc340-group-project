@@ -17,7 +17,7 @@ void print_menu()
          << "3. Load Drivers From File\n"
          << "4. Load Riders From File\n"
          << "~ App Controls ~\n"
-         << "5. Check available drivers // gives number of available drivers\n"
+         << "5. Check Available Drivers // gives number of available drivers\n"
          << "6. New Request // submit new request with pick-up and drop-off location\n"
          << "7. Check Status of Request // gives your place in queue\n"
          << "Press 0 to quit\n";
