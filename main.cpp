@@ -7,7 +7,7 @@
 #include "vehicle.h"
 #include "person.h"
 #include "assignment.h"
-#include "controller.h"
+#include "read.h"
 
 /*
     We should have a set list of locations and only pass those in.
@@ -43,6 +43,14 @@ int main()
     for (Location *loc : locations)
     {
         delete loc;
+    }
+
+    cout << "Read Input Example\n";
+    while(true) {
+        char ch = read("Enter a number: ");
+        cout << "char = " << ch << '\n';
+
+        if(ch == 'q') break;
     }
     return 0;
 }
