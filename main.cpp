@@ -1,11 +1,5 @@
 #include "system.h"
 #include "location.h"
-#include "request.h"
-#include "rider.h"
-#include "vehicle.h"
-#include "person.h"
-#include "assignment.h"
-/* #include "controller.h" */
 #include "read.h"
 
 /*
@@ -23,14 +17,14 @@ int main()
     Location mcdonalds = Location(1, 1, "McDonalds");
     Location home = Location(2, 2, "Home");
     std::vector<Location> locations = {sfstate, embarcadaero, baybridge, mcdonalds, home};
-    /* Location *locations[] = {sfstate, embarcadaero, baybridge, mcdonalds, home}; */
-    // adding drivers
     
+    // adding drivers 
     Driver driver1 = Driver("Driver_Bob", "8YHH264");
-    driver1.setCurrentLocation(sfstate);
+    driver1.add_location(sfstate);
     Driver driver2 = Driver("Driver_Alex", "123ABC!");
-    driver2.setCurrentLocation(embarcadaero);
+    driver2.add_location(embarcadaero);
     Driver driver3 = Driver("Driver_Alice", "155HJ66");
+    driver3.add_location(baybridge);
 
     system->addDriver(driver1);
     system->addDriver(driver2);
@@ -48,9 +42,5 @@ int main()
     system->start();
     // end the program and clean up memory
     delete system;
-    /* for (Location *loc : locations) */
-    /* { */
-    /*     delete loc; */
-    /* } */
     return 0;
 }

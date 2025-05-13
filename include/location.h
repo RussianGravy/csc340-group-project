@@ -9,6 +9,7 @@ public:
     ~Location() {}
     double distanceTo(const Location &other) const;
    std::string getAddress() const;
+   friend std::ostream& operator<<(std::ostream& outs, const Location& p_location);
  private:
     double latitude;
     double longitude;

@@ -24,3 +24,10 @@ string Location::getAddress() const
 {
     return address;
 }
+
+std::ostream& operator<<(std::ostream& outs, const Location& p_location) {
+    outs << "Latitude = " << p_location.latitude << '\n'
+         << "Longitude = " << p_location.longitude << '\n'
+         << "Address = " << p_location.address;
+    return outs;
+}

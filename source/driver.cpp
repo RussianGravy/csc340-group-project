@@ -45,7 +45,12 @@ bool Driver::isAvailable() const
 
 std::ostream &operator<<(std::ostream &os, const Driver &d)
 {
-    os << d.getName() << ", " << d.getLicenseNumber() << ", " << d.isAvailable();
+    os << d.getName() << ", " << d.getLicenseNumber() << ", " << d.isAvailable() << '\n';
+
+    os << "------Locations-------\n";
+    for(const Location& loc : d.locations) {
+        os << loc << '\n';
+    }
     return os;
 }
 /* struct Vehicle */
