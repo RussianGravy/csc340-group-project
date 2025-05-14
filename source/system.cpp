@@ -191,9 +191,12 @@ void System::start()
         }
         else if (x == 7)
         {
-            // cout << "Giving your place in the request queue\n";
             if (userRequest)
-                std::cout << "You are N in queue.\n";
+            {
+                int placeNum = 1;
+                std::cout << "You are " << placeNum << " in queue.\n";
+            }
+            // else if (has driver) print driver
             else
                 std::cout << "You have not made any requests.\n";
         }
