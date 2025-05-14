@@ -40,3 +40,17 @@ std::ostream& operator<<(std::ostream& os, const Rider& rider) {
     os << rider.getName() << " (" << rider.getID() << ")";
     return os;
 }
+
+std::istream& operator>>(std::istream& ins, Rider& p_rider) {
+    std::string rider_name="";
+    std::string rider_id="";
+    std::cout << "Enter Rider Name: ";
+    ins >> rider_name;
+    std::cout << "Enter Rider ID: ";
+    ins >> rider_id;
+
+    p_rider.setName(rider_name);
+    p_rider.setID(rider_id);
+
+    return ins;
+}

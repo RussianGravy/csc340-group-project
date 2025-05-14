@@ -1,6 +1,8 @@
 #include "../include/system.h"
 #include "../include/rider.h"
 #include "read.h"
+#include <fstream>
+#include <sstream>
 
 /*
  * Main Program Loop
@@ -53,14 +55,41 @@ void System::start()
         if (x == 1)
         {
             cout << "Adding a driver!\n";
+            Driver new_driver = read<Driver>("");
+            drivers.push_back(new_driver);
         }
         else if (x == 2)
         {
             cout << "Adding a Rider\n";
+            Rider new_rider = read<Rider>("");
+            riders.push_back(new_rider);
         }
         else if (x == 3)
         {
             cout << "Loading Driver from File\n";
+            std::string filename = read("Enter filename: ");
+
+            std::ifstream ins(filename);
+
+            if(!ins) {
+                cout << "Could not open filename = " << filename << '\n';
+            }
+            
+            while(true) {
+                if(ins.eof()) {
+                    break;
+                }
+
+                std::string line = readline(ins);
+
+                std::stringstream ss(line);
+
+                std::string driver_name="", driver_license="";
+                ss >> driver_name >> driver_license;
+                cout << "Added Driver Name = " << driver_name << '\n';
+                drivers.push_back(Driver(driver_name, driver_license));
+            }
+            
         }
         else if (x == 4)
         {

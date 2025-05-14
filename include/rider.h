@@ -16,7 +16,7 @@ public:
 
     std::string getName() const override;
     friend std::ostream& operator<<(std::ostream& os, const Rider& rider);
-
+    friend std::istream& operator>>(std::istream& ins, Rider& p_rider);
  private:
     std::string paymentMethod;
     Location start;
