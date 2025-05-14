@@ -5,6 +5,7 @@
 #include "location.h"
 #include <string>
 #include <ostream>
+#include <vector>
 
 class Driver : public Person
 {
