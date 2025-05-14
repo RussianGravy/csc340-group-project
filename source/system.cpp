@@ -1,4 +1,5 @@
 #include "../include/system.h"
+#include "../include/rider.h"
 #include "read.h"
 
 /*
@@ -8,6 +9,18 @@
  *
  * progress each Driver through its Assignement (LinkedList?)
  */
+
+
+
+void System::addRider(const Rider& rider) {
+    riders.push_back(rider);
+    cout << "Rider added: " << rider.getName() << "\n";
+}
+
+const list<Rider>& System::getRiders() const {
+    return riders;
+}
+
 
 void print_menu()
 {

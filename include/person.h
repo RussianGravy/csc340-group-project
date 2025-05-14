@@ -6,8 +6,8 @@ class Person
 {
 public:
     // getters
-    std::string getID();
-    virtual std::string getName();
+    std::string getID() const;
+    virtual std::string getName() const;
     std::string getPhone();
     double getRating();
     int getTotalRatings();

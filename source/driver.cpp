@@ -8,13 +8,13 @@ Driver::Driver(std::string name, std::string license)
     this->available = true;
     this->name = name;
 }
-Driver::~Driver()
-{
+Driver::~Driver(){
 }
-std::string Driver::getName() const
-{
+
+std::string Driver::getName() const{
     return this->name;
 }
+
 // settler and getters
 void Driver::setLicenseNumber(std::string license)
 {
