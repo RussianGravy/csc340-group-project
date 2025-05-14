@@ -12,17 +12,16 @@
  * progress each Driver through its Assignement (LinkedList?)
  */
 
-
-
-void System::addRider(const Rider& rider) {
+void System::addRider(const Rider &rider)
+{
     riders.push_back(rider);
     cout << "Rider added: " << rider.getName() << "\n";
 }
 
-const list<Rider>& System::getRiders() const {
+const list<Rider> &System::getRiders() const
+{
     return riders;
 }
-
 
 void print_menu()
 {
@@ -44,7 +43,12 @@ void print_menu()
 // starts system's main loop
 void System::start()
 {
-    Rider user = read<Rider>("");
+    std::cout << "Add user to list of riders: \n";
+    // aaron don't hate me - Val
+    Rider *user = new Rider();
+    *user = read<Rider>("");
+    riders.push_back(*user);
+    Request *userRequest = nullptr;
     while (true)
     {
         print_menu();
@@ -75,28 +79,32 @@ void System::start()
 
             std::ifstream ins(filename);
 
-            if(!ins) {
+            if (!ins)
+            {
                 cout << "Could not open filename = " << filename << '\n';
                 continue;
             }
-            
-            while(true) {
-                if(ins.eof()) {
+
+            while (true)
+            {
+                if (ins.eof())
+                {
                     break;
                 }
-                
+
                 // Read the line of our drivers information
                 std::string line = readline(ins);
-                
+
                 // Parse that line and assign them into various properties
                 std::stringstream ss(line);
 
-                std::string driver_name="", driver_license="";
-                int driver_status_available=0;
+                std::string driver_name = "", driver_license = "";
+                int driver_status_available = 0;
                 ss >> driver_name >> driver_license >> driver_status_available;
 
                 // Skip adding this driver if the name's empty
-                if(driver_name.empty()) {
+                if (driver_name.empty())
+                {
                     continue;
                 }
 
@@ -105,7 +113,6 @@ void System::start()
                 driver.setAvailable(driver_status_available);
                 drivers.push_back(driver);
             }
-            
         }
         else if (x == 4)
         {
@@ -113,26 +120,30 @@ void System::start()
             std::string filename = read("Enter filename: ");
             std::ifstream ins(filename);
 
-            if(!ins) {
+            if (!ins)
+            {
                 cout << "Could not load filename: " << filename << '\n';
                 continue;
             }
 
-            while(true) {
-                if(ins.eof()) {
+            while (true)
+            {
+                if (ins.eof())
+                {
                     break;
                 }
-                
+
                 // Read our line until we reached the , character
                 // To retrieve the name of the rider
                 std::string line = readline(ins, ',');
-                
+
                 // Then we parse the line afterwards to get our longitude, latitude, and address
                 // Rider File Format Data = <rider_name>, <longitude> <latitude> <address>
                 std::stringstream ss(line);
                 std::string rider_name = read(ss);
                 std::string id = read(ins);
-                if(rider_name.empty()) {
+                if (rider_name.empty())
+                {
                     continue;
                 }
                 Location new_loc = read<Location>(ins);
@@ -147,15 +158,19 @@ void System::start()
         {
             cout << "Giving number of available drivers.\n";
             int number_of_available_drivers = 0;
-            for(list<Driver>::Node* current = drivers.get_head(); current; current = current->next) {
-                if(current->data.isAvailable()){
+            for (list<Driver>::Node *current = drivers.get_head(); current; current = current->next)
+            {
+                if (current->data.isAvailable())
+                {
                     number_of_available_drivers++;
                 }
             }
 
             cout << "Drivers Available Count: " << number_of_available_drivers << '\n';
-            for(list<Driver>::Node* current = drivers.get_head(); current; current = current->next) {
-                if(current->data.isAvailable()) {
+            for (list<Driver>::Node *current = drivers.get_head(); current; current = current->next)
+            {
+                if (current->data.isAvailable())
+                {
                     cout << current->data.getName() << " is available!\n";
                     cout << current->data << '\n';
                 }
@@ -163,21 +178,26 @@ void System::start()
         }
         else if (x == 6)
         {
-            cout << "Making a new request for pick up and drop off.\n";
-            std::cout << "Getting Pick Up Location: \n";
-            Location pickUp = read<Location>("");
-            std::cout << "Getting Drop Off Location: \n";
-            Location dropOff = read<Location>("");
+            // I know the pointers are nasty but a regular variable would go out of scope
+            std::cout << "Making a new request for pick up and drop off.\n";
+            std::cout << "Getting Pick Up Location... \n";
+            Location *pickUp = new Location();
+            *pickUp = read<Location>("");
+            std::cout << "Getting Drop Off Location... \n";
+            Location *dropOff = new Location();
+            *dropOff = read<Location>("");
+            userRequest = new Request(user, pickUp, dropOff);
+            addRequest(*userRequest);
         }
         else if (x == 7)
         {
             cout << "Giving your place in the request queue\n";
         }
-        else if(x == 8)
+        else if (x == 8)
         {
             drivers.print();
         }
-        else if(x == 9)
+        else if (x == 9)
         {
             riders.print();
         }
