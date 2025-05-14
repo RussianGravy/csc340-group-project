@@ -1,5 +1,6 @@
 #include "../include/driver.h"
 #include <iostream>
+#include "read.h"
 using namespace std;
 
 Driver::Driver(std::string name, std::string license)
@@ -45,7 +46,8 @@ bool Driver::isAvailable() const
 
 std::ostream &operator<<(std::ostream &os, const Driver &d)
 {
-    os << d.getName() << ", " << d.getLicenseNumber() << ", " << d.isAvailable() << '\n';
+    os << "------[Driver: " << d.getName() << "]-------\n";
+    os << "License: " << d.getLicenseNumber() << " | isAvailable: " << d.isAvailable() << '\n';
 
     os << "------Locations-------\n";
     for(const Location& loc : d.locations) {
@@ -55,12 +57,12 @@ std::ostream &operator<<(std::ostream &os, const Driver &d)
 }
 
 std::istream& operator>>(std::istream& ins, Driver& p_driver) {
-    std::string name="";
-    std::string license="";
+
+
     cout << "Enter Name: ";
-    ins >> name;
+    std::string name = read(ins);
     cout << "Enter License: ";
-    ins >> license;
+    std::string license=read(ins);
 
     p_driver.setName(name);
     p_driver.setLicenseNumber(license);

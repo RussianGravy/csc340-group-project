@@ -1,7 +1,7 @@
 #include "../include/location.h"
 #include <cmath>
 #include <iostream>
-using namespace std;
+#include "read.h"
 
 Location::Location() {}
 Location::Location(double lat, double longg, std::string addy)
@@ -20,7 +20,7 @@ double Location::distanceTo(const Location &other) const
     return sqrt(dx * dx + dy * dy);
 }
 
-string Location::getAddress() const
+std::string Location::getAddress() const
 {
     return address;
 }
@@ -30,4 +30,11 @@ std::ostream& operator<<(std::ostream& outs, const Location& p_location) {
          << "Longitude = " << p_location.longitude << '\n'
          << "Address = " << p_location.address;
     return outs;
+}
+
+std::istream& operator>>(std::istream& ins, Location& p_location) {
+    p_location.latitude = read(ins);
+    p_location.longitude = read(ins);
+    p_location.address = read<std::string>(ins);
+    return ins;
 }

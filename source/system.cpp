@@ -35,6 +35,8 @@ void print_menu()
          << "5. Check Available Drivers // gives number of available drivers\n"
          << "6. New Request // submit new request with pick-up and drop-off location\n"
          << "7. Check Status of Request // gives your place in queue\n"
+         << "8. Print drivers\n"
+         << "9. Print riders\n"
          << "Press 0 to quit\n";
     cout << "------------------------------\n";
 }
@@ -49,6 +51,7 @@ void System::start()
         int x = read("");
         if (x == 0)
         {
+            cout << "Exiting out of system::start!\n";
             break;
         }
 
@@ -73,6 +76,7 @@ void System::start()
 
             if(!ins) {
                 cout << "Could not open filename = " << filename << '\n';
+                continue;
             }
             
             while(true) {
@@ -85,15 +89,45 @@ void System::start()
                 std::stringstream ss(line);
 
                 std::string driver_name="", driver_license="";
-                ss >> driver_name >> driver_license;
+                int driver_status_available=0;
+                ss >> driver_name >> driver_license >> driver_status_available;
+
+                // Skip adding this driver if the name's empty
+                if(driver_name.empty()) {
+                    continue;
+                }
+
                 cout << "Added Driver Name = " << driver_name << '\n';
-                drivers.push_back(Driver(driver_name, driver_license));
+                Driver driver = Driver(driver_name, driver_license);
+                driver.setAvailable(driver_status_available);
+                drivers.push_back(driver);
             }
             
         }
         else if (x == 4)
         {
             cout << "Loading Rider from File\n";
+            std::string filename = read("Enter filename: ");
+            std::ifstream ins(filename);
+
+            if(!ins) {
+                cout << "Could not load filename: " << filename << '\n';
+                continue;
+            }
+
+            while(true) {
+                if(ins.eof()) {
+                    break;
+                }
+
+                std::string line = readline(ins);
+
+                std::stringstream ss(line);
+                std::string rider_name = read(ss);
+                Location new_loc = read<Location>(ins);
+                cout << "Rider Name: " << rider_name << '\n';
+                cout << new_loc << '\n';
+            }
         }
         // App User Controls
         else if (x == 5)
@@ -108,8 +142,15 @@ void System::start()
         {
             cout << "Giving your place in the request queue\n";
         }
+        else if(x == 8)
+        {
+            drivers.print();
+        }
+        else if(x == 9)
+        {
+            riders.print();
+        }
     }
-    drivers.print();
 }
 System::~System()
 {

@@ -1,5 +1,6 @@
 #include "../include/rider.h"
 #include <iostream>
+#include "read.h"
 
 Rider::Rider(std::string id, std::string name)
 {
@@ -42,15 +43,14 @@ std::ostream& operator<<(std::ostream& os, const Rider& rider) {
 }
 
 std::istream& operator>>(std::istream& ins, Rider& p_rider) {
-    std::string rider_name="";
-    std::string rider_id="";
+
     std::cout << "Enter Rider Name: ";
-    ins >> rider_name;
+    std::string rider_name = read(ins);
     std::cout << "Enter Rider ID: ";
-    ins >> rider_id;
+    std::string rider_id = read(ins);
+
 
     p_rider.setName(rider_name);
     p_rider.setID(rider_id);
-
     return ins;
 }
