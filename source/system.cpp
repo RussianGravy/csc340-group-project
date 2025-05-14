@@ -64,6 +64,8 @@ void System::start()
         {
             cout << "Adding a driver!\n";
             Driver new_driver = read<Driver>("");
+            bool x = read("Enter status of the driver: ");
+            new_driver.setAvailable(x);
             drivers.push_back(new_driver);
         }
         else if (x == 2)
