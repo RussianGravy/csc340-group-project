@@ -83,9 +83,11 @@ void System::start()
                 if(ins.eof()) {
                     break;
                 }
-
+                
+                // Read the line of our drivers information
                 std::string line = readline(ins);
-
+                
+                // Parse that line and assign them into various properties
                 std::stringstream ss(line);
 
                 std::string driver_name="", driver_license="";
@@ -119,17 +121,27 @@ void System::start()
                 if(ins.eof()) {
                     break;
                 }
-
+                
+                // Read our line until we reached the , character
+                // To retrieve the name of the rider
                 std::string line = readline(ins, ',');
-
+                
+                // Then we parse the line afterwards to get our longitude, latitude, and address
+                // Rider File Format Data = <rider_name>, <longitude> <latitude> <address>
                 std::stringstream ss(line);
                 std::string rider_name = read(ss);
+                std::string id = read(ins);
                 if(rider_name.empty()) {
                     continue;
                 }
                 Location new_loc = read<Location>(ins);
-                cout << "Rider Name: " << rider_name << '\n';
-                cout << new_loc << '\n';
+                /* cout << "Rider Name: " << rider_name << '\n'; */
+                /* cout << "Rider ID: " << id << '\n'; */
+                /* cout << new_loc << '\n'; */
+
+                Rider new_rider = Rider(id, rider_name);
+                new_rider.set_start_location(new_loc);
+                riders.push_back(new_rider);
             }
         }
         // App User Controls
