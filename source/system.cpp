@@ -191,7 +191,11 @@ void System::start()
         }
         else if (x == 7)
         {
-            cout << "Giving your place in the request queue\n";
+            // cout << "Giving your place in the request queue\n";
+            if (userRequest)
+                std::cout << "You are N in queue.\n";
+            else
+                std::cout << "You have not made any requests.\n";
         }
         else if (x == 8)
         {
