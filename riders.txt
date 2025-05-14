@@ -1,0 +1,2 @@
+Rider_Anomaly,13 17 21 N South Address
+Rider_Object,20 2 14 E Drive Address

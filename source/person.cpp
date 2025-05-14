@@ -2,12 +2,12 @@
 #include "../include/location.h"
 
 // getters
-std::string Person::getID()
+std::string Person::getID() const
 {
     return this->id;
 }
 
-std::string Person::getName()
+std::string Person::getName() const
 {
     return this->name;
 }

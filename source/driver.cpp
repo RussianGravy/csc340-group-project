@@ -1,5 +1,6 @@
 #include "../include/driver.h"
 #include <iostream>
+#include "read.h"
 using namespace std;
 
 Driver::Driver(std::string name, std::string license)
@@ -8,13 +9,13 @@ Driver::Driver(std::string name, std::string license)
     this->available = true;
     this->name = name;
 }
-Driver::~Driver()
-{
+Driver::~Driver(){
 }
-std::string Driver::getName() const
-{
+
+std::string Driver::getName() const{
     return this->name;
 }
+
 // settler and getters
 void Driver::setLicenseNumber(std::string license)
 {
@@ -45,9 +46,10 @@ bool Driver::isAvailable() const
 
 std::ostream &operator<<(std::ostream &os, const Driver &d)
 {
-    os << d.getName() << ", " << d.getLicenseNumber() << ", " << d.isAvailable() << '\n';
+    os << "\n------[Driver: " << d.getName() << "]-------\n";
+    os << "License: " << d.getLicenseNumber() << " | isAvailable: " << (d.isAvailable() ? "true" : "false") << '\n';
 
-    os << "------Locations-------\n";
+    os << "\n------Locations-------\n";
     for(const Location& loc : d.locations) {
         os << loc << '\n';
     }
@@ -55,12 +57,12 @@ std::ostream &operator<<(std::ostream &os, const Driver &d)
 }
 
 std::istream& operator>>(std::istream& ins, Driver& p_driver) {
-    std::string name="";
-    std::string license="";
+
+
     cout << "Enter Name: ";
-    ins >> name;
+    std::string name = read(ins);
     cout << "Enter License: ";
-    ins >> license;
+    std::string license=read(ins);
 
     p_driver.setName(name);
     p_driver.setLicenseNumber(license);

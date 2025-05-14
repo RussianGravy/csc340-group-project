@@ -1,6 +1,4 @@
 #include "system.h"
-#include "location.h"
-#include "read.h"
 
 /*
     We should have a set list of locations and only pass those in.
@@ -8,8 +6,8 @@
 
 int main()
 {
-    // T_E_S_T_I_N_G
     System *system = new System();
+<<<<<<< HEAD
     // making locations
     Location sfstate = Location(2, 4, "SF State");
     Location embarcadaero = Location(1, 1, "Embarcadero");
@@ -39,6 +37,9 @@ int main()
     // Driver test_driver = read<Driver>("");
     // cout << test_driver << '\n';
     // starting the program
+=======
+   	// starting the program
+>>>>>>> 8dfb7efcad00548622fcef486aa9ed8c532d0edb
     system->start();
     // end the program and clean up memory
     delete system;
