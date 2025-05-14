@@ -6,6 +6,7 @@
 class Rider : public Person
 {
 public:
+    Rider() = default;
     Rider(std::string id, std::string name);
     void set_start_location(const Location& p_start);
     void set_destination_location(const Location& p_destination);
