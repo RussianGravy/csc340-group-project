@@ -148,6 +148,20 @@ void System::start()
         else if (x == 5)
         {
             cout << "Giving number of available drivers.\n";
+            int number_of_available_drivers = 0;
+            for(list<Driver>::Node* current = drivers.get_head(); current; current = current->next) {
+                if(current->data.isAvailable()){
+                    number_of_available_drivers++;
+                }
+            }
+
+            cout << "Drivers Available Count: " << number_of_available_drivers << '\n';
+            for(list<Driver>::Node* current = drivers.get_head(); current; current = current->next) {
+                if(current->data.isAvailable()) {
+                    cout << current->data.getName() << " is available!\n";
+                    cout << current->data << '\n';
+                }
+            }
         }
         else if (x == 6)
         {

@@ -46,10 +46,10 @@ bool Driver::isAvailable() const
 
 std::ostream &operator<<(std::ostream &os, const Driver &d)
 {
-    os << "------[Driver: " << d.getName() << "]-------\n";
-    os << "License: " << d.getLicenseNumber() << " | isAvailable: " << d.isAvailable() << '\n';
+    os << "\n------[Driver: " << d.getName() << "]-------\n";
+    os << "License: " << d.getLicenseNumber() << " | isAvailable: " << (d.isAvailable() ? "true" : "false") << '\n';
 
-    os << "------Locations-------\n";
+    os << "\n------Locations-------\n";
     for(const Location& loc : d.locations) {
         os << loc << '\n';
     }
