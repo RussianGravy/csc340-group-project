@@ -1,6 +1,6 @@
 #include "../include/driver.h"
 #include <iostream>
-#include "read.h"
+#include "../template/read.tpp"
 using namespace std;
 
 Driver::Driver(std::string name, std::string license)

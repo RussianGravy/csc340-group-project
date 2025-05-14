@@ -1,7 +1,7 @@
 #include "../include/location.h"
 #include <cmath>
 #include <iostream>
-#include "read.h"
+#include "../template/read.tpp"
 
 Location::Location() {}
 Location::Location(double lat, double longg, std::string addy)

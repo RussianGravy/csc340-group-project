@@ -1,6 +1,6 @@
 #include "../include/rider.h"
 #include <iostream>
-#include "read.h"
+#include "../template/read.tpp"
 
 Rider::Rider(std::string id, std::string name)
 {

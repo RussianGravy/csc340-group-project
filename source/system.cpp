@@ -1,6 +1,6 @@
 #include "../include/system.h"
 #include "../include/rider.h"
-#include "read.h"
+#include "../template/read.tpp"
 #include <fstream>
 #include <sstream>
 
