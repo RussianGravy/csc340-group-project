@@ -135,9 +135,6 @@ void System::start()
                     continue;
                 }
                 Location new_loc = read<Location>(ins);
-                /* cout << "Rider Name: " << rider_name << '\n'; */
-                /* cout << "Rider ID: " << id << '\n'; */
-                /* cout << new_loc << '\n'; */
 
                 Rider new_rider = Rider(id, rider_name);
                 new_rider.set_start_location(new_loc);
@@ -196,6 +193,7 @@ System::~System()
 // returns 1 if no available driver, 0 if otherwise successful
 int System::assignDriver(const Request &request)
 {
+    // Using pointer to indicate if the object is valid whenever we make requests to available drivers.
     Driver *closestDriver = nullptr;
     double distanceToClosestDriver;
     for (list<Driver>::Node *current = drivers.get_head(); current; current = current->next)
