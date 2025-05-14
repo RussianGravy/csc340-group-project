@@ -120,10 +120,13 @@ void System::start()
                     break;
                 }
 
-                std::string line = readline(ins);
+                std::string line = readline(ins, ',');
 
                 std::stringstream ss(line);
                 std::string rider_name = read(ss);
+                if(rider_name.empty()) {
+                    continue;
+                }
                 Location new_loc = read<Location>(ins);
                 cout << "Rider Name: " << rider_name << '\n';
                 cout << new_loc << '\n';

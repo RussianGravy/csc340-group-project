@@ -35,6 +35,6 @@ std::ostream& operator<<(std::ostream& outs, const Location& p_location) {
 std::istream& operator>>(std::istream& ins, Location& p_location) {
     p_location.latitude = read(ins);
     p_location.longitude = read(ins);
-    p_location.address = read<std::string>(ins);
+    p_location.address = readline(ins);
     return ins;
 }
