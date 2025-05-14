@@ -27,6 +27,7 @@ void print_menu()
 // starts system's main loop
 void System::start()
 {
+    Rider user = read<Rider>("");
     while (true)
     {
         print_menu();
@@ -61,6 +62,10 @@ void System::start()
         else if (x == 6)
         {
             cout << "Making a new request for pick up and drop off.\n";
+            std::cout << "Getting Pick Up Location: \n";
+            Location pickUp = read<Location>("");
+            std::cout << "Getting Drop Off Location: \n";
+            Location dropOff = read<Location>("");
         }
         else if (x == 7)
         {

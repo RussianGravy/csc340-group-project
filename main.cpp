@@ -17,8 +17,8 @@ int main()
     Location mcdonalds = Location(1, 1, "McDonalds");
     Location home = Location(2, 2, "Home");
     std::vector<Location> locations = {sfstate, embarcadaero, baybridge, mcdonalds, home};
-    
-    // adding drivers 
+
+    // adding drivers
     Driver driver1 = Driver("Driver_Bob", "8YHH264");
     driver1.add_location(sfstate);
     Driver driver2 = Driver("Driver_Alex", "123ABC!");
@@ -30,15 +30,15 @@ int main()
     system->addDriver(driver2);
     system->addDriver(driver3);
     // adding a request
-    
-	// Aaron Note -- When you allocate it memory leaks here because your allocating your rider to the heap
-	// Aaron Note -- You might want to do this a bit differently because this also causes a memory leak.
-	/* Rider *testRider = new Rider("C1238895", "Rider_James", mcdonalds); */
+
+    // Aaron Note -- When you allocate it memory leaks here because your allocating your rider to the heap
+    // Aaron Note -- You might want to do this a bit differently because this also causes a memory leak.
+    /* Rider *testRider = new Rider("C1238895", "Rider_James", mcdonalds); */
     /* system->addRequest(new Request(testRider, mcdonalds, home)); */
-    
-    Driver test_driver = read<Driver>("");
-    cout << test_driver << '\n';
-	// starting the program
+
+    // Driver test_driver = read<Driver>("");
+    // cout << test_driver << '\n';
+    // starting the program
     system->start();
     // end the program and clean up memory
     delete system;
