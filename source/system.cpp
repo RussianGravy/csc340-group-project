@@ -110,7 +110,10 @@ void System::start()
 
                 std::string driver_name = "", driver_license = "";
                 int driver_status_available = 0;
-                ss >> driver_name >> driver_license >> driver_status_available;
+                int latitude = 0; // Val's addition to include a spawn location
+                int longitude = 0;
+                std::string address = "";
+                ss >> driver_name >> driver_license >> driver_status_available >> longitude >> latitude >> address;
 
                 // Skip adding this driver if the name's empty
                 if (driver_name.empty())
@@ -121,6 +124,7 @@ void System::start()
                 cout << "Added Driver Name = " << driver_name << '\n';
                 Driver driver = Driver(driver_name, driver_license);
                 driver.setAvailable(driver_status_available);
+                driver.add_location(latitude, longitude, address);
                 drivers.push_back(driver);
             }
         }
@@ -188,16 +192,22 @@ void System::start()
         }
         else if (x == 6)
         {
-            // I know the pointers are nasty but a regular variable would go out of scope
-            std::cout << "Making a new request for pick up and drop off.\n";
-            std::cout << "Getting Pick Up Location... \n";
-            Location *pickUp = new Location();
-            *pickUp = read<Location>("");
-            std::cout << "Getting Drop Off Location... \n";
-            Location *dropOff = new Location();
-            *dropOff = read<Location>("");
-            userRequest = new Request(user, pickUp, dropOff);
-            addRequest(*userRequest);
+            if (userRequest == nullptr)
+            { // I know the pointers are nasty but a regular variable would go out of scope
+                std::cout << "Making a new request for pick up and drop off.\n";
+                std::cout << "Getting Pick Up Location... \n";
+                Location *pickUp = new Location();
+                *pickUp = read<Location>("");
+                std::cout << "Getting Drop Off Location... \n";
+                Location *dropOff = new Location();
+                *dropOff = read<Location>("");
+                userRequest = new Request(user, pickUp, dropOff);
+                addRequest(*userRequest);
+            }
+            else
+            {
+                cout << "You already have an active request.\n";
+            }
         }
         else if (x == 7)
         {
@@ -262,6 +272,7 @@ int System::assignDriver(const Request &request)
     {
         closestDriver->setAvailable(false);
         closestDriver->setAssignment(*request.getRider(), *request.getPickUp(), *request.getDropOff());
+        closestDriver->add_location(*request.getPickUp());
         requests.pop();
         return 0;
     }

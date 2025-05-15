@@ -28,6 +28,7 @@ public:
 
   // adds new location queue'd up to the driver
   void add_location(const Location &p_location);
+  void add_location(const int latitude, const int longitude, const std::string address);
 
   friend std::ostream &operator<<(std::ostream &os, const Driver &driver);
   friend std::istream &operator>>(std::istream &ins, Driver &p_driver);

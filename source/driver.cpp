@@ -41,6 +41,11 @@ void Driver::add_location(const Location &p_location)
 {
     locations.push_back(p_location);
 }
+void Driver::add_location(const int latitude, const int longitude, const std::string address)
+{
+    Location temp(latitude, longitude, address);
+    this->add_location(temp);
+}
 
 void Driver::set_vehicle(const Vehicle &p_vehicle)
 {
