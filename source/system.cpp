@@ -51,8 +51,16 @@ void System::start()
     Request *userRequest = nullptr;
     while (true)
     {
+        // assignDriver for next in queue
+        if (!requests.empty())
+        {
+            if (assignDriver(requests.front()))
+            {
+                requests.pop();
+            }
+        }
+        // user interaction loop
         print_menu();
-
         int x = read("");
         if (x == 0)
         {
@@ -196,11 +204,11 @@ void System::start()
             if (userRequest)
             {
                 int placeNum = 1;
-                std::cout << "You are " << placeNum << " in queue.\n";
+                std::cout << "You are still in queue.\n";
             }
             // else if (has driver) print driver
             else
-                std::cout << "You have not made any requests.\n";
+                std::cout << "You have no active requests.\n";
         }
         else if (x == 8)
         {
@@ -253,6 +261,7 @@ int System::assignDriver(const Request &request)
     if (closestDriver)
     {
         closestDriver->setAvailable(false);
+        closestDriver->setAssignment(*request.getRider(), *request.getPickUp(), *request.getDropOff());
         requests.pop();
         return 0;
     }

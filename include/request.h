@@ -5,14 +5,14 @@
 class Request
 {
 public:
-    Request(Rider *rider, Location *pickUp, Location *dropOff);
-    ~Request();
-    Rider *getRider();
-    Location *getPickUp() const;
- private:
-    Rider *rider;
-    Location *pickUp;
-    Location *dropOff;
+   Request(Rider *rider, Location *pickUp, Location *dropOff);
+   ~Request();
+   Rider *getRider() const;
+   Location *getPickUp() const;
    Location *getDropOff() const;
-};
 
+private:
+   Rider *rider;
+   Location *pickUp;
+   Location *dropOff;
+};
