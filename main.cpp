@@ -7,7 +7,7 @@
 int main()
 {
     System *system = new System();
-   	// starting the program
+    // starting the program
     system->start();
     // end the program and clean up memory
     delete system;

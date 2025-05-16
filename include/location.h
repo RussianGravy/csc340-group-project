@@ -1,6 +1,7 @@
 #pragma once
 #include <istream>
 #include <string>
+#include <iostream>
 
 class Location
 {
@@ -17,4 +18,3 @@ public:
     double longitude;
     std::string address;
 };
-

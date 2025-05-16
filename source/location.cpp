@@ -25,16 +25,21 @@ std::string Location::getAddress() const
     return address;
 }
 
-std::ostream& operator<<(std::ostream& outs, const Location& p_location) {
+std::ostream &operator<<(std::ostream &outs, const Location &p_location)
+{
     outs << "Latitude = " << p_location.latitude << '\n'
          << "Longitude = " << p_location.longitude << '\n'
          << "Address = " << p_location.address;
     return outs;
 }
 
-std::istream& operator>>(std::istream& ins, Location& p_location) {
+std::istream &operator>>(std::istream &ins, Location &p_location)
+{
+    std::cout << "Enter Latitude: \n";
     p_location.latitude = read(ins);
+    std::cout << "Enter Longitude\n";
     p_location.longitude = read(ins);
+    std::cout << "Enter Address: \n";
     p_location.address = readline(ins);
     return ins;
 }
