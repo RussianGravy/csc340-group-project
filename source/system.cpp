@@ -213,7 +213,7 @@ void System::start()
             } 
             else
             {
-                cout << "You are number still in queue.\n";
+                cout << "You are still in queue.\n";
             }
         }
         else if (x == 7)
