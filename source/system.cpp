@@ -33,7 +33,7 @@ void print_menu()
          << "~ App Controls ~\n"
          << "5. Check Available Drivers // gives number of available drivers\n"
          << "6. New Request // submit new request with pick-up and drop-off location\n"
-         << "7. Check Status of Request // gives your place in queue\n"
+         << "7. Check Status // give status of the user\n"
          << "8. Print drivers\n"
          << "9. Print riders\n"
          << "Press 0 to quit\n";
@@ -45,10 +45,15 @@ void System::start()
 {
     std::cout << "Add user to list of riders: \n";
     // aaron don't hate me - Val
-    Rider *user = new Rider();
+    Rider *user;
+    Request *userRequest;
+    user = new Rider();
     *user = read<Rider>("");
     riders.push_back(*user);
-    Request *userRequest = nullptr;
+    userRequest = nullptr;
+
+    cout << "\nHello, " << *user << "!\n\n";
+
     while (true)
     {
         // assignDriver for next in queue
@@ -192,8 +197,10 @@ void System::start()
         }
         else if (x == 6)
         {
+            cout << *user << endl;
             if (userRequest == nullptr)
-            { // I know the pointers are nasty but a regular variable would go out of scope
+            {
+                // I know the pointers are nasty but a regular variable would go out of scope
                 std::cout << "Making a new request for pick up and drop off.\n";
                 std::cout << "Getting Pick Up Location... \n";
                 Location *pickUp = new Location();
@@ -203,14 +210,15 @@ void System::start()
                 *dropOff = read<Location>("");
                 userRequest = new Request(user, pickUp, dropOff);
                 addRequest(*userRequest);
-            }
+            } 
             else
             {
-                cout << "You already have an active request.\n";
+                cout << "You are number N in queue.\n";
             }
         }
         else if (x == 7)
         {
+            cout << "User " << *user << ", ";
             if (userRequest)
             {
                 int placeNum = 1;
@@ -229,6 +237,7 @@ void System::start()
             riders.print();
         }
     }
+    delete user;
 }
 System::~System()
 {

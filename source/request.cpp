@@ -11,9 +11,8 @@ Request::Request(Rider *rider, Location *pickUp, Location *dropOff)
     //*this->pickUp = *pickUp;
     //*this->dropOff = *dropOff;
 }
-Request::~Request()
+Request::~Request() // rider is deleted in system destructor
 {
-    delete rider;
     delete pickUp;
     delete dropOff;
 }
