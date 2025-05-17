@@ -5,12 +5,21 @@ void printMenu()
     std::cout << "------------------------------\n";
     std::cout << "(1) input drivers from file\n";
     std::cout << "(2) input riders from file\n";
+    std::cout << "(3) request pick-up and drop-off\n";
+    std::cout << "(4) assign driver to rider\n";
     std::cout << "Press 0 to quit\n";
     std::cout << "------------------------------\n";
 }
 
 void Test::start()
 {
+    Rider jolly("111", "Jolly");
+    this->riders.push_back(jolly);
+    Rider tilly("112", "Tilly");
+    this->riders.push_back(tilly);
+    Rider cricket("113", "Cricket");
+    this->riders.push_back(cricket);
+
     int userInput = 1;
     while (userInput != 0)
     {
@@ -24,13 +33,20 @@ void Test::start()
         {
             this->test_input_riders_from_file();
         }
+        else if (userInput == 3)
+        {
+            // this->test_make_requests();
+        }
+        else if (userInput == 4)
+        {
+            // this->test_assign_driver();
+        }
     }
 }
 
+// test file IO for Riders
 int Test::test_input_drivers_from_file()
 {
-    vector<Driver> drivers;
-
     int lines = 3;
 
     std::string filename = "drivers.txt";
@@ -75,9 +91,9 @@ int Test::test_input_drivers_from_file()
         Driver driver = Driver(driver_name, driver_license);
         driver.setAvailable(driver_status_available);
         driver.add_location(latitude, longitude, address);
-        drivers.push_back(driver);
+        this->drivers.push_back(driver);
     }
-    if (drivers.size() != lines)
+    if (this->drivers.size() != lines)
     {
         std::cout << "FAILED - did not add all drivers\n";
         return 1;
@@ -89,10 +105,9 @@ int Test::test_input_drivers_from_file()
     return 0;
 }
 
+// test file IO for Riders
 int Test::test_input_riders_from_file()
 {
-    vector<Rider> riders;
-
     int lines = 2;
 
     std::string filename = "riders.txt";
@@ -130,9 +145,10 @@ int Test::test_input_riders_from_file()
 
         Rider new_rider = Rider(id, rider_name);
         new_rider.set_start_location(new_loc);
-        riders.push_back(new_rider);
+        std::cout << new_rider << endl;
+        this->riders.push_back(new_rider);
     }
-    if (riders.size() != lines)
+    if (this->riders.size() != lines)
     {
         std::cout << "FAILED - did not add all riders\n";
         return 1;
@@ -144,4 +160,38 @@ int Test::test_input_riders_from_file()
     return 0;
 }
 
+int Test::test_make_requests()
+{
+    for (Rider rider : this->riders)
+    {
+        Location *pickUp = new Location();
+        // add test location
+        Location *dropOff = new Location();
+        // add test location
+        this->requests.push(new Request(&rider, pickUp, dropOff));
+    }
+    if (this->requests.size() == this->riders.size())
+    {
+        std::cout << "SUCCESS - there are now " << this->requests.size() << " requests in queue.\n";
+    }
+    else
+    {
+        std::cout << "FAILED - not all requests were added.";
+        return 1;
+    }
+    return 0;
+}
+
 int Test::test_assign_driver() { return 0; }
+
+/*
+std::cout << "Making a new request for pick up and drop off.\n";
+std::cout << "Getting Pick Up Location... \n";
+Location *pickUp = new Location();
+*pickUp = read<Location>("");
+std::cout << "Getting Drop Off Location... \n";
+Location *dropOff = new Location();
+*dropOff = read<Location>("");
+userRequest = new Request(user, pickUp, dropOff);
+addRequest(*userRequest);
+*/

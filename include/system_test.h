@@ -12,9 +12,13 @@ public:
     void start();
     int test_input_drivers_from_file();
     int test_input_riders_from_file();
+    int test_make_requests();
     int test_assign_driver();
 
 private:
+    vector<Driver> drivers;
+    vector<Rider> riders;
+    queue<Request *> requests;
 };
 
 #endif
