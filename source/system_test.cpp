@@ -160,27 +160,3 @@ int Test::test_input_riders_from_file()
     }
     return 0;
 }
-
-int Test::test_make_requests()
-{
-    for (Rider rider : this->riders)
-    {
-        Location *pickUp = new Location();
-        // add test location
-        Location *dropOff = new Location();
-        // add test location
-        this->requests.push(new Request(&rider, pickUp, dropOff));
-    }
-    if (this->requests.size() == this->riders.size())
-    {
-        std::cout << "SUCCESS - there are now " << this->requests.size() << " requests in queue.\n";
-    }
-    else
-    {
-        std::cout << "FAILED - not all requests were added.";
-        return 1;
-    }
-    return 0;
-}
-
-int Test::test_assign_driver() { return 0; }
