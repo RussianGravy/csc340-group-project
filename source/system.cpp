@@ -33,7 +33,7 @@ void print_menu()
          << "~ App Controls ~\n"
          << "5. Check Available Drivers // gives number of available drivers\n"
          << "6. New Request // submit new request with pick-up and drop-off location\n"
-         << "7. Check Status of Request // gives your place in queue\n"
+         << "7. Check Status // give status of the user\n"
          << "8. Print drivers\n"
          << "9. Print riders\n"
          << "Press 0 to quit\n";
@@ -45,14 +45,27 @@ void System::start()
 {
     std::cout << "Add user to list of riders: \n";
     // aaron don't hate me - Val
-    Rider *user = new Rider();
+    Rider *user;
+    Request *userRequest;
+    user = new Rider();
     *user = read<Rider>("");
     riders.push_back(*user);
-    Request *userRequest = nullptr;
+    userRequest = nullptr;
+
+    cout << "\nHello, " << *user << "!\n\n";
+
     while (true)
     {
+        // assignDriver for next in queue
+        if (!requests.empty())
+        {
+            if (assignDriver(requests.front()))
+            {
+                requests.pop();
+            }
+        }
+        // user interaction loop
         print_menu();
-
         int x = read("");
         if (x == 0)
         {
@@ -102,7 +115,10 @@ void System::start()
 
                 std::string driver_name = "", driver_license = "";
                 int driver_status_available = 0;
-                ss >> driver_name >> driver_license >> driver_status_available;
+                int latitude = 0; // Val's addition to include a spawn location
+                int longitude = 0;
+                std::string address = "";
+                ss >> driver_name >> driver_license >> driver_status_available >> longitude >> latitude >> address;
 
                 // Skip adding this driver if the name's empty
                 if (driver_name.empty())
@@ -113,6 +129,7 @@ void System::start()
                 cout << "Added Driver Name = " << driver_name << '\n';
                 Driver driver = Driver(driver_name, driver_license);
                 driver.setAvailable(driver_status_available);
+                driver.add_location(latitude, longitude, address);
                 drivers.push_back(driver);
             }
         }
@@ -180,27 +197,36 @@ void System::start()
         }
         else if (x == 6)
         {
-            // I know the pointers are nasty but a regular variable would go out of scope
-            std::cout << "Making a new request for pick up and drop off.\n";
-            std::cout << "Getting Pick Up Location... \n";
-            Location *pickUp = new Location();
-            *pickUp = read<Location>("");
-            std::cout << "Getting Drop Off Location... \n";
-            Location *dropOff = new Location();
-            *dropOff = read<Location>("");
-            userRequest = new Request(user, pickUp, dropOff);
-            addRequest(*userRequest);
+            cout << *user << endl;
+            if (userRequest == nullptr)
+            {
+                // I know the pointers are nasty but a regular variable would go out of scope
+                std::cout << "Making a new request for pick up and drop off.\n";
+                std::cout << "Getting Pick Up Location... \n";
+                Location *pickUp = new Location();
+                *pickUp = read<Location>("");
+                std::cout << "Getting Drop Off Location... \n";
+                Location *dropOff = new Location();
+                *dropOff = read<Location>("");
+                userRequest = new Request(user, pickUp, dropOff);
+                addRequest(*userRequest);
+            } 
+            else
+            {
+                cout << "You are number N in queue.\n";
+            }
         }
         else if (x == 7)
         {
+            cout << "User " << *user << ", ";
             if (userRequest)
             {
                 int placeNum = 1;
-                std::cout << "You are " << placeNum << " in queue.\n";
+                std::cout << "You are still in queue.\n";
             }
             // else if (has driver) print driver
             else
-                std::cout << "You have not made any requests.\n";
+                std::cout << "You have no active requests.\n";
         }
         else if (x == 8)
         {
@@ -211,6 +237,7 @@ void System::start()
             riders.print();
         }
     }
+    delete user;
 }
 System::~System()
 {
@@ -253,6 +280,8 @@ int System::assignDriver(const Request &request)
     if (closestDriver)
     {
         closestDriver->setAvailable(false);
+        closestDriver->setAssignment(*request.getRider(), *request.getPickUp(), *request.getDropOff());
+        closestDriver->add_location(*request.getPickUp());
         requests.pop();
         return 0;
     }
