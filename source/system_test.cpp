@@ -5,21 +5,14 @@ void printMenu()
     std::cout << "------------------------------\n";
     std::cout << "(1) input drivers from file\n";
     std::cout << "(2) input riders from file\n";
-    std::cout << "(3) request pick-up and drop-off\n";
-    std::cout << "(4) assign driver to rider\n";
+    std::cout << "(3) print drivers\n";
+    std::cout << "(4) print riders\n";
     std::cout << "Press 0 to quit\n";
     std::cout << "------------------------------\n";
 }
 
 void Test::start()
 {
-    Rider jolly("111", "Jolly");
-    this->riders.push_back(jolly);
-    Rider tilly("112", "Tilly");
-    this->riders.push_back(tilly);
-    Rider cricket("113", "Cricket");
-    this->riders.push_back(cricket);
-
     int userInput = 1;
     while (userInput != 0)
     {
@@ -35,16 +28,24 @@ void Test::start()
         }
         else if (userInput == 3)
         {
-            // this->test_make_requests();
+            std::cout << "Currently " << drivers.size() << " drivers.\n";
+            for (Driver driver : drivers)
+            {
+                std::cout << driver;
+            }
         }
         else if (userInput == 4)
         {
-            // this->test_assign_driver();
+            std::cout << "Currently " << riders.size() << " riders.\n";
+            for (Rider rider : riders)
+            {
+                std::cout << rider << endl;
+            }
         }
     }
 }
 
-// test file IO for Riders
+// test file IO for Drivers
 int Test::test_input_drivers_from_file()
 {
     int lines = 3;
@@ -183,15 +184,3 @@ int Test::test_make_requests()
 }
 
 int Test::test_assign_driver() { return 0; }
-
-/*
-std::cout << "Making a new request for pick up and drop off.\n";
-std::cout << "Getting Pick Up Location... \n";
-Location *pickUp = new Location();
-*pickUp = read<Location>("");
-std::cout << "Getting Drop Off Location... \n";
-Location *dropOff = new Location();
-*dropOff = read<Location>("");
-userRequest = new Request(user, pickUp, dropOff);
-addRequest(*userRequest);
-*/
